@@ -10,5 +10,4 @@ public:
     std::vector< std::vector<double> >::const_iterator end() const;
     Matrix (std::vector< std::vector<double> >);
     void print() const;
-    // std::vector<double> operator[](unsigned) const;
 };

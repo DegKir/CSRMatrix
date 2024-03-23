@@ -2,6 +2,13 @@
 #include <vector>
 #include <iostream>
 
+
+std::vector<double> MathVector::getValues() const
+{
+    return _values;
+}
+
+
 MathVector::MathVector(std::vector<double> values) : _values(values) {}
 
 int MathVector::size() const

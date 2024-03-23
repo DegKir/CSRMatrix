@@ -25,4 +25,3 @@ void Matrix::print() const
         std::cout << std::endl;
     }
 }
-// std::vector<double> Matrix::operator[](unsigned) const;

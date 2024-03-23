@@ -2,12 +2,27 @@ cmake_minimum_required(VERSION 3.5)
 project(CSRMatrLib)
 set(CMAKE_CXX_STANDARD 20)
 
+option(USE_MY_LIBRARY "help_text" ON)
+
+#set(SPARSKIT_LIBRARY_PATH /Users/kirilldegtarev/Documents/lib/SPARSKIT2)
+
+add_subdirectory(cmake)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+
 add_subdirectory(src) #Внутри будет установлена переменная SOURCE_LIB
 add_subdirectory(include) #Внутри будет установлена переменная HEADER_LIB
-
 add_library(hello ${SOURCE_LIB} ${HEADER_LIB})
-#add_library(hello ${SOURCE_LIB}) что это поменяет ?
-
 target_include_directories(hello PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+
+if(NOT USE_MY_LIBRARY)
+    find_package(SPARSKIT)
+    message("search for SPARSKIT2 ...")
+    target_link_libraries(hello PUBLIC ${SKIT_LIBRARY})
+    target_compile_definitions(hello PUBLIC USE_SPARSKIT)
+endif()
+
+
 
 add_subdirectory(example)
